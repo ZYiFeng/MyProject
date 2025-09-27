@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能对话系统 - 项目介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 10px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: rgba(25, 25, 35, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #0f3460 0%, #533483 100%);
+            padding: 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid #533483;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #e0e0e0, #a8a8a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #b8b8b8;
+            margin-bottom: 15px;
+        }
+        
+        .tagline {
+            font-style: italic;
+            color: #8a8a8a;
+            max-width: 100%;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+        
+        .content {
+            padding: 15px;
+        }
+        
+        section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(40, 40, 55, 0.7);
+            border-radius: 8px;
+            border-left: 4px solid #533483;
+        }
+        
+        h2 {
+            color: #e94560;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            border-bottom: 1px solid #533483;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        h3 {
+            color: #8a8a8a;
+            margin: 12px 0 8px;
+            font-size: 1.1rem;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature-card {
+            background: rgba(50, 50, 70, 0.7);
+            padding: 15px;
+            border-radius: 6px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #533483;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #e94560, #533483);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(83, 52, 131, 0.4);
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        
+        .tech-item {
+            background: rgba(83, 52, 131, 0.3);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            border: 1px solid #533483;
+            transition: all 0.3s;
+        }
+        
+        .tech-item:hover {
+            background: rgba(83, 52, 131, 0.5);
+            transform: scale(1.03);
+        }
+        
+        .code-block {
+            background: #1e1e2e;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            overflow-x: auto;
+            border-left: 3px solid #e94560;
+            position: relative;
+            font-size: 0.85rem;
+        }
+        
+        .code-block::before {
+            content: '代码示例';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #e94560;
+            color: white;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            border-radius: 0 0 0 4px;
+        }
+        
+        code {
+            font-family: 'Consolas', monospace;
+            color: #f8f8f2;
+        }
+        
+        .screenshot {
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .screenshot img {
+            max-width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid #533483;
+            transition: transform 0.3s;
+        }
+        
+        .screenshot img:hover {
+            transform: scale(1.01);
+        }
+        
+        .caption {
+            font-style: italic;
+            color: #8a8a8a;
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(15, 15, 25, 0.9);
+            border-top: 1px solid #533483;
+            color: #8a8a8a;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #e94560 0%, #533483 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 8px 4px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            min-height: 44px; /* 触摸友好尺寸 */
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(233, 69, 96, 0.4);
+        }
+        
+        /* 修复视频容器样式 */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 15px auto;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid #533483;
+            background: #000;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.3s;
+            cursor: pointer;
+            min-height: 200px; /* 确保触摸区域足够大 */
+        }
+        
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .video-overlay i {
+            font-size: 3rem;
+            margin-bottom: 12px;
+            color: #e94560;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #533483;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        
+        .nav-tab {
+            padding: 10px 15px;
+            background: rgba(50, 50, 70, 0.7);
+            border: 1px solid #533483;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            margin-right: 0;
+            transition: all 0.3s;
+            margin-bottom: 5px;
+            text-align: center;
+            min-height: 44px; /* 触摸友好尺寸 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-tab.active {
+            background: #533483;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .stat-card {
+            background: rgba(50, 50, 70, 0.7);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #533483;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e94560;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+        }
+        
+        /* 视频控制按钮样式 */
+        .video-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .video-btn {
+            background: rgba(83, 52, 131, 0.7);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            min-height: 44px; /* 触摸友好尺寸 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .video-btn:hover {
+            background: rgba(83, 52, 131, 0.9);
+        }
+        
+        /* 移动端菜单 */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 25, 0.95);
+            border-top: 1px solid #533483;
+            z-index: 1000;
+            padding: 10px;
+        }
+        
+        .mobile-menu-items {
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .mobile-menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #b8b8b8;
+            font-size: 0.8rem;
+            text-decoration: none;
+            padding: 5px;
+        }
+        
+        .mobile-menu-item i {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+        }
+        
+        .mobile-menu-item.active {
+            color: #e94560;
+        }
+        
+        /* 桌面端样式 */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 1200px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+            
+            header {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+                max-width: 800px;
+                text-align: center;
+            }
+            
+            .content {
+                padding: 30px;
+            }
+            
+            section {
+                margin-bottom: 40px;
+                padding: 25px;
+                border-radius: 10px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+            
+            h2 i {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+            
+            h3 {
+                margin: 15px 0 10px;
+                font-size: 1.3rem;
+            }
+            
+            p {
+                margin-bottom: 15px;
+                font-size: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+                margin-top: 20px;
+            }
+            
+            .feature-card {
+                padding: 20px;
+                border-radius: 8px;
+            }
+            
+            .feature-card::before {
+                height: 4px;
+            }
+            
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(83, 52, 131, 0.4);
+            }
+            
+            .tech-stack {
+                gap: 15px;
+                margin-top: 15px;
+            }
+            
+            .tech-item {
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+            
+            .code-block {
+                padding: 15px;
+                border-radius: 8px;
+                margin: 15px 0;
+                border-left: 4px solid #e94560;
+                font-size: 1rem;
+            }
+            
+            .code-block::before {
+                padding: 2px 8px;
+                font-size: 0.8rem;
+            }
+            
+            .screenshot {
+                margin: 20px 0;
+            }
+            
+            .screenshot img {
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+            
+            .screenshot img:hover {
+                transform: scale(1.02);
+            }
+            
+            .caption {
+                margin-top: 10px;
+                font-size: 1rem;
+            }
+            
+            footer {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                border-radius: 5px;
+                margin: 10px 5px;
+                font-size: 1rem;
+                min-height: auto;
+                min-width: auto;
+                display: inline-block;
+            }
+            
+            .video-container {
+                max-width: 800px;
+                margin: 20px auto;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+            
+            .video-overlay i {
+                font-size: 4rem;
+                margin-bottom: 15px;
+            }
+            
+            .nav-tabs {
+                flex-direction: row;
+                margin-bottom: 20px;
+            }
+            
+            .nav-tab {
+                padding: 10px 20px;
+                margin-right: 5px;
+                margin-bottom: 0;
+                min-height: auto;
+            }
+            
+            .project-stats {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                margin: 20px 0;
+            }
+            
+            .stat-card {
+                padding: 20px;
+                border-radius: 8px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+            
+            .stat-label {
+                font-size: 1rem;
+            }
+            
+            .video-controls {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 15px;
+            }
+            
+            .video-btn {
+                padding: 8px 15px;
+                font-size: 1rem;
+                min-height: auto;
+            }
+            
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+        
+        /* 中等屏幕样式 */
+        @media (min-width: 480px) and (max-width: 767px) {
+            .project-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-controls {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-tabs {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-robot"></i> AI智能对话系统</h1>
+            <div class="subtitle">基于PyQt5的多模态AI对话应用</div>
+            <p class="tagline" >集成视觉语言模型、语音识别与合成，提供全面的智能交互体验</p>
+        </header>
+        
+        <div class="content">
+            <section id="overview">
+                <h2><i class="fas fa-info-circle"></i> 项目概述</h2>
+                <p>这是一个基于PyQt5的多模态AI对话系统，集成了文本对话、语音识别、图像处理和语音合成功能。系统使用了先进的视觉语言模型Qwen2.5-VL，能够理解图像内容并结合文本进行智能对话。</p>
+                
+                <div class="project-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">交互模式</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3B</div>
+                        <div class="stat-label">模型参数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">离线运行</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">多线程</div>
+                        <div class="stat-label">流畅体验</div>
+                    </div>
+                </div>
+                
+                <div class="screenshot">
+                    <div style="background: #2a2a3a; height: auto; display: flex; align-items: flex-start; justify-content: center; border-radius: 8px; overflow: hidden; padding: 10px;">
+                        <img src="../static/jm.png" alt="程序界面" style="width: 100%; max-width: 400px; height: auto;">
+                    </div>
+                    <p class="caption">AI智能对话系统主界面</p>
+                </div>
+            </section>
+            
+            <section id="demo">
+                <h2><i class="fas fa-play-circle"></i> 演示视频</h2>
+                <p>以下视频展示了AI智能对话系统的完整功能演示，包括文本对话、语音识别、图像分析和语音合成。</p>
+                
+                <div class="video-container">
+                    <video id="demoVideo" controls playsinline>
+                        <source src="../static/video/video.mp4" type="video/mp4">
+                        您的浏览器不支持HTML5视频标签。
+                    </video>
+                    <div class="video-overlay" id="videoOverlay">
+                        <i class="fas fa-play-circle"></i>
+                        <p>点击播放演示视频</p>
+                    </div>
+                </div>
+                
+                <div class="video-controls">
+                    <button class="video-btn" onclick="togglePlayPause()">
+                        <i class="fas fa-play"></i> 播放/暂停
+                    </button>
+                    <button class="video-btn" onclick="toggleMute()">
+                        <i class="fas fa-volume-up"></i> 静音
+                    </button>
+                    <button class="video-btn" onclick="setPlaybackRate(1.0)">
+                        <i class="fas fa-forward"></i> 正常
+                    </button>
+                    <button class="video-btn" onclick="setPlaybackRate(1.5)">
+                        <i class="fas fa-fast-forward"></i> 1.5x
+                    </button>
+                </div>
+                
+                <p class="caption">视频展示了系统的多模态交互能力，包括图像理解、语音对话等功能</p>
+            </section>
+            
+            <section id="features">
+                <h2><i class="fas fa-star"></i> 功能特点</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3><i class="fas fa-keyboard"></i> 多模态输入支持</h3>
+                        <p>支持文本输入、语音识别和图像上传，提供多样化的交互方式。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-brain"></i> 智能对话能力</h3>
+                        <p>基于Qwen2.5-VL模型的视觉语言理解，能够结合图像内容进行上下文对话。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-microphone"></i> 语音交互</h3>
+                        <p>集成实时语音识别和文本转语音功能，实现完整的语音交互体验。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-palette"></i> 用户友好界面</h3>
+                        <p>直观的图形用户界面，响应式按钮设计，美观的聊天记录显示。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="technology">
+                <h2><i class="fas fa-cogs"></i> 技术架构</h2>
+                
+                <div class="nav-tabs">
+                    <div class="nav-tab active" data-tab="frontend">前端技术</div>
+                    <div class="nav-tab" data-tab="backend">后端技术</div>
+                    <div class="nav-tab" data-tab="data">数据处理</div>
+                </div>
+                
+                <div class="tab-content active" id="frontend">
+                    <div class="tech-stack">
+                        <span class="tech-item"><i class="fab fa-python"></i> PyQt5</span>
+                        <span class="tech-item"><i class="fas fa-paint-brush"></i> QSS样式表</span>
+                        <span class="tech-item"><i class="fas fa-edit"></i> QTextEdit</span>
+                    </div>
+                    <p>前端使用PyQt5构建桌面应用程序界面，通过QSS样式表实现现代化UI设计，QTextEdit组件支持富文本显示和图文混排。</p>
+                </div>
+                
+                <div class="tab-content" id="backend">
+                    <div class="tech-stack">
+                        <span class="tech-item"><i class="fas fa-eye"></i> Qwen2.5-VL模型</span>
+                        <span class="tech-item"><i class="fas fa-assistive-listening-systems"></i> Vosk语音识别</span>
+                        <span class="tech-item"><i class="fas fa-volume-up"></i> PyAudio</span>
+                        <span class="tech-item"><i class="fas fa-robot"></i> pyttsx3</span>
+                    </div>
+                    <p>后端集成多种AI技术：Qwen2.5-VL提供视觉语言理解能力，Vosk实现离线语音识别，PyAudio处理音频流，pyttsx3提供文本转语音功能。</p>
+                </div>
+                
+                <div class="tab-content" id="data">
+                    <div class="tech-stack">
+                        <span class="tech-item"><i class="fas fa-image"></i> PIL (Pillow)</span>
+                        <span class="tech-item"><i class="fas fa-brain"></i> Transformers</span>
+                        <span class="tech-item"><i class="fas fa-tasks"></i> 多线程处理</span>
+                    </div>
+                    <p>数据处理方面，PIL库用于图像处理，Transformers库加载和运行AI模型，多线程技术确保UI流畅性和实时响应。</p>
+                </div>
+            </section>
+            
+            <section id="implementation">
+                <h2><i class="fas fa-code"></i> 核心实现逻辑</h2>
+                <h3><i class="fas fa-window-restore"></i> 1. 界面初始化</h3>
+                <p>创建主窗口和各类控件（按钮、输入框、文本显示区），设置样式和布局，初始化信号槽连接。</p>
+                
+                <h3><i class="fas fa-database"></i> 2. 模型加载</h3>
+                <p>加载预训练的Qwen2.5-VL模型，初始化语音识别模型，设置文本转语音引擎。</p>
+                
+                <h3><i class="fas fa-comments"></i> 3. 对话流程</h3>
+                <p>用户输入（文本/语音/图像） → 预处理输入数据 → 调用模型生成响应 → 显示结果并可选语音播报。</p>
+                
+                <h3><i class="fas fa-stream"></i> 4. 多线程处理</h3>
+                <p>使用多线程处理音频录制、语音识别和模型推理，确保UI线程不被阻塞。</p>
+                
+                <div class="code-block">
+                    <code># 多模态输入处理示例<br>messages = [{"role": "user", "content": []}]<br>if use_image:<br>    messages[0]['content'].append({"type": "image"})<br>messages[0]['content'].append({"type": "text", "text": question})<br><br># 应用聊天模板<br>text_prompt = self.processor.apply_chat_template(messages, add_generation_prompt=True)</code>
+                </div>
+            </section>
+            
+            <section id="requirements">
+                <h2><i class="fas fa-list-check"></i> 运行要求</h2>
+                <ul>
+                    <li><i class="fab fa-python"></i> Python 3.7+</li>
+                    <li><i class="fas fa-desktop"></i> PyQt5</li>
+                    <li><i class="fas fa-brain"></i> Transformers</li>
+                    <li><i class="fas fa-fire"></i> PyTorch</li>
+                    <li><i class="fas fa-microphone"></i> Vosk</li>
+                    <li><i class="fas fa-volume-up"></i> PyAudio</li>
+                    <li><i class="fas fa-robot"></i> pyttsx3</li>
+                    <li><i class="fas fa-image"></i> Pillow</li>
+                </ul>
+            </section>
+            
+            <section id="future">
+                <h2><i class="fas fa-rocket"></i> 扩展可能性</h2>
+                <ul>
+                    <li><i class="fas fa-expand"></i> 支持更多图像格式和处理选项</li>
+                    <li><i class="fas fa-history"></i> 增加对话历史管理</li>
+                    <li><i class="fas fa-sliders-h"></i> 添加模型配置选项</li>
+                    <li><i class="fas fa-globe"></i> 支持多语言识别和合成</li>
+                    <li><i class="fas fa-file-export"></i> 增加导出对话记录功能</li>
+                </ul>
+            </section>
+        </div>
+        
+        <footer>
+            <p style="text-align: center;">AI智能对话系统 - 多模态AI应用示例</p>
+            <p style="text-align: center;">© 2025 项目演示</p>
+            
+        </footer>
+    </div>
+
+    <!-- 移动端底部菜单 -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-items">
+            <a href="#overview" class="mobile-menu-item active">
+                <i class="fas fa-home"></i>
+                <span>概述</span>
+            </a>
+            <a href="#demo" class="mobile-menu-item">
+                <i class="fas fa-play-circle"></i>
+                <span>演示</span>
+            </a>
+            <a href="#features" class="mobile-menu-item">
+                <i class="fas fa-star"></i>
+                <span>功能</span>
+            </a>
+            <a href="#technology" class="mobile-menu-item">
+                <i class="fas fa-cogs"></i>
+                <span>技术</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 视频播放控制
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('demoVideo');
+            const overlay = document.getElementById('videoOverlay');
+            
+            if (overlay) {
+                overlay.addEventListener('click', function() {
+                    video.play();
+                    overlay.classList.add('hidden');
+                });
+            }
+            
+            // 标签页切换
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有活动标签
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // 隐藏所有内容
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // 激活当前标签
+                    this.classList.add('active');
+                    // 显示对应内容
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // 视频播放结束后显示覆盖层
+            if (video) {
+                video.addEventListener('ended', function() {
+                    if (overlay) {
+                        overlay.classList.remove('hidden');
+                    }
+                });
+                
+                // 修复视频尺寸问题
+                video.addEventListener('loadedmetadata', function() {
+                    // 确保视频正确显示
+                    this.style.width = '100%';
+                    this.style.height = 'auto';
+                });
+            }
+            
+            // 移动端菜单处理
+            const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+            mobileMenuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    // 更新活动菜单项
+                    mobileMenuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 滚动到目标部分
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // 显示/隐藏移动端菜单
+            function toggleMobileMenu() {
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (window.innerWidth <= 767) {
+                    mobileMenu.style.display = 'block';
+                } else {
+                    mobileMenu.style.display = 'none';
+                }
+            }
+            
+            // 初始检查和窗口大小变化监听
+            toggleMobileMenu();
+            window.addEventListener('resize', toggleMobileMenu);
+        });
+        
+        // 视频控制函数
+        function togglePlayPause() {
+            const video = document.getElementById('demoVideo');
+            if (video.paused) {
+                video.play();
+                document.getElementById('videoOverlay').classList.add('hidden');
+            } else {
+                video.pause();
+            }
+        }
+        
+        function toggleMute() {
+            const video = document.getElementById('demoVideo');
+            video.muted = !video.muted;
+            // 更新按钮文本
+            const muteButton = document.querySelector('.video-btn:nth-child(2)');
+            if (video.muted) {
+                muteButton.innerHTML = '<i class="fas fa-volume-mute"></i> 取消静音';
+            } else {
+                muteButton.innerHTML = '<i class="fas fa-volume-up"></i> 静音';
+            }
+        }
+        
+        function setPlaybackRate(rate) {
+            const video = document.getElementById('demoVideo');
+            video.playbackRate = rate;
+        }
+        
+        // 响应式视频调整
+        window.addEventListener('resize', function() {
+            const video = document.getElementById('demoVideo');
+            if (video) {
+                video.style.width = '100%';
+                video.style.height = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
